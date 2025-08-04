@@ -7,7 +7,10 @@
 # without an express license agreement from NVIDIA CORPORATION or
 # its affiliates is strictly prohibited.
 
+import os
 from os import path
+from pathlib import Path
+import sys
 import time
 from typing import Dict, List, Optional
 
@@ -59,9 +62,15 @@ def get_robot_config(robot_file: str,
             raise SystemExit
 
         # Construct the XRDF file path and convert it to a dictionary.
-        xrdf_dir_path = path.join(
-            get_package_share_directory('isaac_ros_cumotion_robot_description'), 'xrdf')
-        xrdf_file_path = join_path(xrdf_dir_path, robot_file)
+        if not robot_file.lower().startswith("/"):
+            xrdf_dir_path = path.join(
+                get_package_share_directory('isaac_ros_cumotion_robot_description'), 'xrdf')
+            xrdf_file_path = join_path(xrdf_dir_path, robot_file)
+        else:
+            sys.path.insert(0, str(Path(robot_file).parent))        
+            xrdf_file_path = robot_file
+        
+        
         content_path = ContentPath(robot_xrdf_absolute_path=xrdf_file_path,
                                    robot_urdf_absolute_path=urdf_file_path)
         robot_config = load_robot_yaml(content_path)
