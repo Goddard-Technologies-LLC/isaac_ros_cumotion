@@ -307,7 +307,8 @@ class CumotionActionServer(Node):
                 },
             }
         )
-
+        # self.get_logger().error(
+        #     f'\nLoading robot config from {self.__robot_file} and urdf path {self.__urdf_path}')
         robot_config = get_robot_config(
             robot_file=self.__robot_file,
             urdf_file_path=self.__urdf_path,

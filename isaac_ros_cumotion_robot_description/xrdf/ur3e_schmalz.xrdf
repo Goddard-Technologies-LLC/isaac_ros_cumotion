@@ -47,7 +47,7 @@ collision:
     attached_object: 0.005
 
 self_collision:
-  geometry: "ur3e_collision_spheres"
+  geometry: "ur3e_schmalz_collision_spheres"
   buffer_distance:
     tool0: 0.025
     schmalz_link: 0.025
@@ -62,7 +62,7 @@ self_collision:
       "wrist_2_link", "wrist_3_link", "schmalz_base_link", "tool0", "schmalz_base_link"]
 
 geometry:
-  ur3e_collision_spheres:
+  ur3e_schmalz_collision_spheres:
     spheres:
       shoulder_link:
         - center: [-0.0, 0.0, -0.02]
